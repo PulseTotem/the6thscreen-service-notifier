@@ -39,6 +39,7 @@ class NotifierRouter extends RouterItf {
 	 */
 	newNotification(req : any, res : any) {
 
+		this.server.broadcastExternalMessage("notify", req.body);
 
 		res.end();
 	}

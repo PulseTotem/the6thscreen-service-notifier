@@ -44,4 +44,17 @@ class NotifierNamespaceManager extends SourceNamespaceManager {
         Logger.debug("listenNotifications Action with params :");
         Logger.debug(params);
     }
+
+	/**
+	 * Method called when external message come (from API Endpoints for example).
+	 *
+	 * @method onExternalMessage
+	 * @param {string} from - Source description of message
+	 * @param {any} message - Received message
+	 */
+	onExternalMessage(from : string, message : any) {
+		if(from == "notify") {
+			//this.sendNewInfoToClient();//TODO
+		}
+	}
 }
