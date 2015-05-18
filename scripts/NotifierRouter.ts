@@ -26,8 +26,10 @@ class NotifierRouter extends RouterItf {
 	 * @method buildRouter
 	 */
 	buildRouter() {
+		var self = this;
+
 		// define the '/' route
-		this.router.post('/', this.newNotification);
+		this.router.post('/', function(req : any, res : any) { self.newNotification(req, res); });
 	}
 
 	/**
@@ -38,7 +40,6 @@ class NotifierRouter extends RouterItf {
 	 * @param {Express.Response} res - Response object.
 	 */
 	newNotification(req : any, res : any) {
-
 		this.server.broadcastExternalMessage("notify", req.body);
 
 		res.end();

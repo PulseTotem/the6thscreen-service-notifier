@@ -47,6 +47,7 @@ class NotifierNamespaceManager extends SourceNamespaceManager {
 
         Logger.debug("listenNotifications Action with params :");
         Logger.debug(params);
+		//TODO: Save locally these params and use them before sendNewInfoToClient
     }
 
 	/**
