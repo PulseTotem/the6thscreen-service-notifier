@@ -2,8 +2,6 @@
  * @author Christian Brel <christian@the6thscreen.fr, ch.brel@gmail.com>
  */
 
-/// <reference path="../libsdef/datejs.d.ts" />
-/// <reference path="../t6s-core/core-backend/libsdef/node-uuid.d.ts" />
 
 /// <reference path="../t6s-core/core-backend/scripts/Logger.ts" />
 
@@ -12,13 +10,6 @@
 /// <reference path="../t6s-core/core-backend/t6s-core/core/scripts/infotype/UserList.ts" />
 /// <reference path="../t6s-core/core-backend/t6s-core/core/scripts/infotype/User.ts" />
 /// <reference path="../t6s-core/core-backend/t6s-core/core/scripts/infotype/priorities/InfoPriority.ts" />
-
-var datejs : any = require('datejs');
-
-var DateJS : any = <any>Date;
-var uuid : any = require('node-uuid');
-
-var util = require('util');
 
 class NotifierNamespaceManager extends SourceNamespaceManager {
 
@@ -30,24 +21,7 @@ class NotifierNamespaceManager extends SourceNamespaceManager {
      */
     constructor(socket : any) {
         super(socket);
-        this.addListenerToSocket('Subscribe', this.subscribe);
-    }
-
-    /**
-     * Subscribe to notifications.
-     *
-     * @method subscribe
-     * @param {Object} params - Params to subscribe to notifications : ???.
-     * @param {NotifierNamespaceManager} self - the NotifierNamespaceManager's instance.
-     */
-	subscribe(params : any, self : NotifierNamespaceManager = null) {
-        if(self == null) {
-            self = this;
-        }
-
-        Logger.debug("listenNotifications Action with params :");
-        Logger.debug(params);
-		//TODO: Save locally these params and use them before sendNewInfoToClient
+        this.addListenerToSocket('Subscribe', function(params, self) { new Subscribe(params, self); });
     }
 
 	/**
